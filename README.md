@@ -3,6 +3,10 @@
 Eine realistische, animierte Sanduhr im Browser – gebaut mit **HTML, CSS, JavaScript und PHP**.
 Läuft auf Handy, Tablet, Computer und TV.
 
+**▶ Live-Demo / Canlı demo: [saitguelen.github.io/sanduhr](https://saitguelen.github.io/sanduhr/)**
+<sub>Auf GitHub Pages läuft kein PHP – der Verlauf ist dort ausgeblendet, alles andere funktioniert.
+GitHub Pages PHP çalıştırmaz – geçmiş listesi orada görünmez, geri kalan her şey çalışır.</sub>
+
 > 🇹🇷 Türkçe açıklama aşağıda: [Türkçe](#-türkçe)
 
 ---
