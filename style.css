@@ -1,0 +1,215 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg1: #2c1f15;
+  --bg2: #0e0907;
+  --text: #f4e7d1;
+  --muted: #b9a68a;
+  --accent: #e3a94f;
+  --accent-text: #2a1a08;
+  --btn: rgba(255, 236, 205, 0.08);
+  --btn-border: rgba(255, 236, 205, 0.18);
+}
+
+html, body { margin: 0; height: 100%; }
+
+body {
+  background: radial-gradient(ellipse at 35% 30%, var(--bg1), var(--bg2) 75%) fixed;
+  background-color: var(--bg2);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  min-height: 100vh;
+  min-height: 100svh;
+  max-width: 1800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 1fr);
+  align-items: center;
+  gap: clamp(16px, 4vw, 72px);
+  padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+           max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+}
+
+/* ---------- Sanduhr ---------- */
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.glass-wrap {
+  width: min(100%, calc(74vh * 0.55));
+  width: min(100%, calc(74svh * 0.55));
+  aspect-ratio: 11 / 20;
+  cursor: pointer;
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.55));
+}
+.glass-wrap.flipping { transform: rotate(180deg); }
+.glass-wrap.no-anim { transition: none !important; }
+
+canvas { display: block; width: 100%; height: 100%; }
+
+.time {
+  font-size: clamp(2.2rem, 7vmin, 6.5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-top: 0.4rem;
+}
+.dur { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- Bedienfeld ---------- */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 34rem;
+  width: 100%;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vmin, 3.2rem);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+button, input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  min-height: 48px;
+  padding: 0.6em 1em;
+  border-radius: 14px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  touch-action: manipulation;
+}
+button:hover { background: rgba(255, 236, 205, 0.16); }
+button:active { transform: scale(0.97); }
+button.primary, .preset[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+:focus-visible {
+  outline: 3px solid #fff3d6;
+  outline-offset: 3px;
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+.preset { padding: 0.6em 0.3em; }
+
+.custom label { display: block; margin-bottom: 0.4rem; color: var(--muted); }
+.custom .row { display: flex; gap: 0.5rem; }
+.custom input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0.5em 0.8em;
+  border-radius: 14px;
+  border: 1px solid var(--btn-border);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 0.5rem;
+}
+.controls button { font-size: 1.1em; }
+
+.options { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.options button { flex: 1; }
+
+.history summary { cursor: pointer; color: var(--muted); padding: 0.3rem 0; }
+.history ul { margin: 0.4rem 0 0; padding-left: 1.2rem; color: var(--muted); }
+.history li { margin: 0.2rem 0; }
+
+.hint { margin: 0; font-size: 0.85rem; color: var(--muted); opacity: 0.8; }
+
+[hidden] { display: none !important; }
+
+/* ---------- Fertig-Meldung ---------- */
+.done {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 6, 3, 0.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+  padding: 1rem;
+}
+.done-box { text-align: center; }
+.done-box p {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.4rem, 10vmin, 8rem);
+  font-weight: 800;
+  color: var(--accent);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.done-box button { min-width: 8em; font-size: 1.2em; }
+
+@keyframes pulse {
+  50% { transform: scale(1.06); text-shadow: 0 0 30px rgba(227, 169, 79, 0.6); }
+}
+
+/* ---------- Handy & Tablet hochkant ---------- */
+@media (orientation: portrait), (max-width: 760px) {
+  .app {
+    grid-template-columns: 1fr;
+    align-content: start;
+    justify-items: center;
+    gap: 1.2rem;
+  }
+  .glass-wrap {
+    width: min(68vw, calc(50vh * 0.55));
+    width: min(68vw, calc(50svh * 0.55));
+  }
+  h1 { display: none; }
+  .hint { display: none; }
+}
+
+@media (max-width: 380px) {
+  .presets { grid-template-columns: repeat(3, 1fr); }
+  .controls { grid-template-columns: 1fr 1fr; }
+  .controls .primary { grid-column: 1 / -1; }
+}
+
+/* ---------- Handy quer (wenig Höhe) ---------- */
+@media (orientation: landscape) and (max-height: 520px) {
+  .glass-wrap { width: calc(72vh * 0.55); width: calc(72svh * 0.55); }
+  .time { font-size: 2rem; }
+  .panel { gap: 0.6rem; }
+  h1, .hint, .custom label { display: none; }
+}
+
+/* ---------- Großer Bildschirm / TV ---------- */
+@media (min-width: 1600px) { html { font-size: 22px; } }
+@media (min-width: 2400px) { html { font-size: 32px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-wrap { transition-duration: 0.25s; }
+  .done-box p { animation: none; }
+}
