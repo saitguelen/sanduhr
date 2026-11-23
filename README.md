@@ -43,7 +43,7 @@ Läuft auf Handy, Tablet, Computer und TV.
 1. Den Ordner `sanduhr` nach `C:\xampp\htdocs\` kopieren (oder das Repository dort klonen):
    ```bash
    cd C:\xampp\htdocs
-   git clone https://github.com/<benutzername>/sanduhr.git
+   git clone https://github.com/saitguelen/sanduhr.git
    ```
 2. Im XAMPP Control Panel **Apache** starten.
 3. Im Browser öffnen: `http://localhost/sanduhr/`
@@ -127,7 +127,7 @@ Telefon, tablet, bilgisayar ve TV'de çalışır. Arayüz Almancadır.
 1. `sanduhr` klasörünü `C:\xampp\htdocs\` içine kopyala (veya depoyu orada klonla):
    ```bash
    cd C:\xampp\htdocs
-   git clone https://github.com/<kullanici-adi>/sanduhr.git
+   git clone https://github.com/saitguelen/sanduhr.git
    ```
 2. XAMPP Control Panel'den **Apache**'yi başlat.
 3. Tarayıcıda aç: `http://localhost/sanduhr/`
